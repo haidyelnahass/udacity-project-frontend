@@ -1,0 +1,30 @@
+name: 'Haidys Terraform Deployment'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linting:
+    name: 'Code linting'
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout code 
+        uses: actions/checkout@v3
+      - name: Setup dependencies 
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linting
+        run: npm lint
+        env:
+          FAIL_LINT: true
