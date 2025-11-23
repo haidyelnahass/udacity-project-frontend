@@ -40,6 +40,7 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform -chdir=./terraform apply -auto-approve
+        continue-on-error: true
 
       # - name: Terraform Destroy
       #   run:  terraform -chdir=./terraform plan -destroy
