@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function MovieDetails({ movie }) {
   if (!movie) return null;
 
