@@ -1,16 +1,13 @@
-name: 'Haidys Terraform Deployment'
+name: 'Udacity Frontend Integration Workflow'
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
 jobs:
-  linting:
+  lint:
     name: 'Code linting'
     runs-on: ubuntu-latest
 
@@ -23,12 +20,14 @@ jobs:
           node-version: latest 
       - name: Install dependencies
         run: npm install
+      
+      - name: Fix eslint issues
 
       - name: Run linting
         run: npm run lint
         env:
           FAIL_LINT: true
-  testing:
+  test:
     name: 'Code testing'
     runs-on: ubuntu-latest
 
@@ -44,3 +43,18 @@ jobs:
 
       - name: Run tests
         run: npm test
+  build:
+    name: 'Code building'
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v3
+
+      - name: Setup docker buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: Build docker image without pushing it 
+        run: docker buildx build --load -t frontend:latest .
+      

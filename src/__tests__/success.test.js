@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
 // Mock MovieList component
-jest.mock("./components/MovieList", () => {
+jest.mock("../components/MovieList", () => {
   return function MockMovieList({ onMovieClick }) {
     return (
       <div>
@@ -17,7 +17,7 @@ jest.mock("./components/MovieList", () => {
 });
 
 // Mock MovieDetails component
-jest.mock("./components/MovieDetails", () => {
+jest.mock("../components/MovieDetails", () => {
   return function MockMovieDetails({ movie }) {
     return (
       <div data-testid="movie-details">
