@@ -303,6 +303,7 @@ resource "aws_iam_role" "codebuild" {
   })
 }
 
+
 # Attach the IAM policy to the codebuild role
 resource "aws_iam_role_policy_attachment" "codebuild" {
   policy_arn = "arn:aws:iam::aws:policy/AWSCodeBuildAdminAccess"
