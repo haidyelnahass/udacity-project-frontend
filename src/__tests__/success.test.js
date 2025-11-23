@@ -1,6 +1,6 @@
 
 import { render, screen, fireEvent } from "@testing-library/react";
-import App from "./App";
+import App from "../App";
 
 // Mock MovieList component
 jest.mock("../components/MovieList", () => {
