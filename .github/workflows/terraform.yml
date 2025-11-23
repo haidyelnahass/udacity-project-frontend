@@ -26,10 +26,10 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Initialize
-        run: terraform init
+        run: terraform -chdir=./terraform init
 
       - name: Terraform Validate
-        run: terraform validate 
+        run: terraform -chdir=./terraform validate 
 
       - name: Terraform Plan
         run: terraform -chdir=./terraform plan
@@ -39,5 +39,5 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform -chdir=./terraform apply -auto-approve
 
-      - name: Terraform Destroy
-        run:  terraform plan -destroy
+      # - name: Terraform Destroy
+      #   run:  terraform -chdir=./terraform plan -destroy
